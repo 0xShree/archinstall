@@ -85,7 +85,7 @@ class UserList(ListManager):
 				break
 
 		password = get_password(prompt=str(_('Password for user "{}": ').format(username)))
-
+		print(password)
 		choice = Menu(
 			str(_('Should "{}" be a superuser (sudo)?')).format(username), Menu.yes_no(),
 			skip=False,
