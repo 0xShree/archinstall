@@ -52,9 +52,8 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 	:rtype: list
 	"""
 	hard_drives = all_blockdevices(partitions=False).values()
-	log(hard_drives)
-	options = [f'{option}' for option in hard_drives]
-
+	options = {f'{option}': option for option in hard_drives}
+	log(options)
 	title = str(_('Select one or more hard drives to use and configure\n'))
 	title += str(_('Any modifications to the existing setting will reset the disk layout!'))
 
