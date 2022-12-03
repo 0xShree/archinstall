@@ -71,7 +71,7 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 	match selected_harddrive.type_:
 		case MenuSelectionType.Reset: return []
 		case MenuSelectionType.Skip: return preset
-		case MenuSelectionType.Selection: return selected_harddrive.value
+		case MenuSelectionType.Selection: return [str(options[i]) for i in selected_harddrive.value]
 
 
 def select_driver(options: Dict[str, Any] = AVAILABLE_GFX_DRIVERS) -> str:
