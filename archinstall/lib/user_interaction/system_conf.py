@@ -53,8 +53,7 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 	"""
 	hard_drives = all_blockdevices(partitions=False).values()
 	options = {f'{option}': option for option in hard_drives}
-	my_temp_var = list(options.keys())
-	log(my_temp_var)
+	
 	title = str(_('Select one or more hard drives to use and configure\n'))
 	title += str(_('Any modifications to the existing setting will reset the disk layout!'))
 
@@ -62,7 +61,7 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 
 	selected_harddrive = Menu(
 		title,
-		my_temp_var,
+		list(options.keys()),
 		preset_values=preset,
 		multi=True,
 		allow_reset=True,
@@ -72,7 +71,7 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 	match selected_harddrive.type_:
 		case MenuSelectionType.Reset: return []
 		case MenuSelectionType.Skip: return preset
-		case MenuSelectionType.Selection: return [options[i] for i in selected_harddrive.value]
+		case MenuSelectionType.Selection: return selected_harddrive.value
 
 
 def select_driver(options: Dict[str, Any] = AVAILABLE_GFX_DRIVERS) -> str:
