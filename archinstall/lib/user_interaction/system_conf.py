@@ -53,8 +53,8 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 	"""
 	hard_drives = all_blockdevices(partitions=False).values()
 	log(hard_drives)
-	options = {f'{option}': option for option in hard_drives}
-	dummy_optionKey_var = list(options.keys())
+	options = [f'{option}' for option in hard_drives]
+
 	title = str(_('Select one or more hard drives to use and configure\n'))
 	title += str(_('Any modifications to the existing setting will reset the disk layout!'))
 
@@ -62,7 +62,7 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 
 	selected_harddrive = Menu(
 		title,
-		dummy_optionKey_var,
+		options,
 		preset_values=preset,
 		multi=True,
 		allow_reset=True,
