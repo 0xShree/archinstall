@@ -8,6 +8,8 @@ from ..hardware import AVAILABLE_GFX_DRIVERS, has_uefi, has_amd_graphics, has_in
 from ..menu import Menu
 from ..menu.menu import MenuSelectionType
 from ..storage import storage
+import logging
+from ..output import log
 
 if TYPE_CHECKING:
 	_: Any
@@ -50,6 +52,7 @@ def select_harddrives(preset: List[str] = []) -> List[str]:
 	:rtype: list
 	"""
 	hard_drives = all_blockdevices(partitions=False).values()
+	log(hard_drives)
 	options = {f'{option}': option for option in hard_drives}
 	dummy_optionKey_var = list(options.keys())
 	title = str(_('Select one or more hard drives to use and configure\n'))
