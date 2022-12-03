@@ -283,8 +283,7 @@ def all_blockdevices(
 		for block_device in glob.glob("/dev/mapper/*"):
 			if (pathobj := pathlib.Path(block_device)).is_symlink():
 				instances[f"/dev/mapper/{pathobj.name}"] = MapperDev(mappername=pathobj.name)
-	log(f"{instance}": instance for instance in instances)
-
+	log(f"{instance}")
 	return instances
 
 
